@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-may-2017 12:37:57 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Account" table="ACCOUNT_" schema="APP" optimistic-lock="version">
+        <composite-id name="id" class="model.AccountId">
+            <key-property name="accountId" type="long">
+                <column name="ACCOUNT_ID" />
+            </key-property>
+            <key-property name="userId" type="string">
+                <column name="USER_ID" length="9" />
+            </key-property>
+        </composite-id>
+        <property name="user" type="string">
+            <column name="USER_" length="100" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="PASSWORD" length="20" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="100" />
+        </property>
+        <property name="platform" type="string">
+            <column name="PLATFORM" length="50" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
