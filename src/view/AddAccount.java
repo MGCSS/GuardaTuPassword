@@ -1,10 +1,8 @@
 package view;
 
-//import java.awt.Color;
 
 import javax.swing.JOptionPane;
 import model.Account;
-
 
 public class AddAccount extends javax.swing.JFrame 
 {
@@ -154,7 +152,7 @@ public class AddAccount extends javax.swing.JFrame
         else
         {
             Account account;
-            
+    
             account = new Account();
             
             account.setUser(jtxtUserID.getText());
@@ -171,8 +169,7 @@ public class AddAccount extends javax.swing.JFrame
                 JOptionPane.showMessageDialog(rootPane, "Ha ocurrido un error. Inténtelo de nuevo", "Error de sistema", JOptionPane.ERROR_MESSAGE);
             }
             this.dispose();
-            this.userAccounts.updateTable();
-            
+            this.userAccounts.updateTable();         
         }
     }//GEN-LAST:event_jbtnAddAccountActionPerformed
 

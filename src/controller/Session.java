@@ -9,6 +9,7 @@ import model.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
+import org.jasypt.util.text.BasicTextEncryptor;
 
 /**
  * Esta clase gestiona la sesión de un usuario.
@@ -61,7 +62,9 @@ public class Session
      */
     private boolean addAccount(Account account)
     {
+        BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
         boolean result;
+        textEncryptor.setPassword("jasypt");
         
         try
         {
@@ -69,6 +72,7 @@ public class Session
             ///genera ID (Long).
             //asocia la cuenta al usuario.
             account.setId(new AccountId(System.currentTimeMillis(), this.user.getId()));
+            account.setPassword(textEncryptor.encrypt(account.getPassword())); //encrypts user password.
             session.save(account);
             System.out.println("Cuenta creada correctamente...");
             accounts.add(account);
@@ -212,6 +216,11 @@ public class Session
      */
     public List<Account> getUserAccounts()
     {
+        // Should we decrypt user passwords here?
+        BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
+        
+        textEncryptor.setPassword("jasypt");
+        accounts.forEach((account) -> {account.setPassword(textEncryptor.decrypt(account.getPassword()));});
         return accounts;
     }
 
@@ -323,12 +332,15 @@ public class Session
      */
     private boolean updateAccount(Account account)
     {
+        BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
         boolean result;
+        textEncryptor.setPassword("jasypt");
         
         try
         {
             initOperation();
             account.getId().setUserId(this.user.getId());
+            account.setPassword(textEncryptor.encrypt(account.getPassword())); //encrypts user password.
             session.update(account);
             System.out.println("Cuenta actualizada correctamente...");
             result = true;

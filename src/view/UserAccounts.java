@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controller.Session;
@@ -14,7 +9,8 @@ import model.AccountId;
 
 /**
  *
- * @author usuario
+ * @author Javier A. Zambrano Macias
+ * @author Samuel López Domínguez
  */
 public class UserAccounts extends javax.swing.JFrame {
 
@@ -42,7 +38,8 @@ public class UserAccounts extends javax.swing.JFrame {
         return this.session;
     }
 
-    public void updateTable() {
+    public void updateTable() 
+    {
         List<Account> accounts;
 
         accounts = this.session.getUserAccounts();   
@@ -235,8 +232,7 @@ public class UserAccounts extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmnuItExitApplicationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnuItExitApplicationActionPerformed
-        // TODO add your handling code here:43480693B   test
-        
+
         int rows;
         
         rows = jtblAccounts.getRowCount();
